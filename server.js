@@ -34,12 +34,13 @@ app.use('/api/users',routes);
 app.use('/api/polls',routes2);
 
 //PRODUCTION
-if(process.env.NODE.ENV === 'production') {
-  app.use(express.static( 'client/build'));
-
-
-
+if(process.env.NODE_ENV === 'production'){
+  //set static folder
+  app.use(express.static('client/build'));
 }
+app.get('*',(req, res) => {
+  res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+});
 
 //PORT CONNECTION
 const port = process.env.PORT || 5000;
