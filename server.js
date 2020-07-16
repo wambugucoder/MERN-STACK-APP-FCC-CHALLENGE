@@ -34,7 +34,7 @@ app.use('/api/users',routes);
 app.use('/api/polls',routes2);
 
 //PRODUCTION
-if(process.env.NODE_ENV === 'production') {
+if(process.env.NODE.ENV === 'production') {
   app.use(express.static( 'client/build'));
 
 
