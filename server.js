@@ -32,8 +32,10 @@ keys.mongoURI
 //ROUTING MIDDLEWARE
 app.use('/api/users',routes);
 app.use('/api/polls',routes2);
+
+//PRODUCTION
 if(process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, 'client', 'build')));
+  app.use(express.static( 'client/build'));
 
 
 
