@@ -5,6 +5,8 @@ const keys=require("./config/keys");
 const routes=require("./controller/api/users");
 const routes2=require("./controller/api/polls");
 const path = require("path");
+const helmet = require("helmet");
+const morgan  = require('morgan')
 const app = express();
 
 
@@ -12,8 +14,12 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
+//SECURITY MIDDLEWARE
 
+app.use(helmet());
 
+//LOGGER MIDDLEWARE
+app.use(morgan('dev'))
 
 //MONGO DB CONNECTION
 mongoose.connect(
