@@ -6,3 +6,5 @@ patch:
   'npm:minimatch:20160620':
     - react-responsive-data-table > is-valid-date > tape > glob > minimatch:
         patched: '2020-09-12T08:47:15.017Z'
+    - react-responsive-data-table > is-valid-date > tape > glob > minimatch:
+        patched: '2020-09-12T09:15:49.248Z'
