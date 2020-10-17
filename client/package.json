@@ -26,7 +26,11 @@
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "styled-components": "^5.2.0",
+
     "snyk": "^1.398.1"
+
+    "snyk": "^1.398.0"
+
   },
   "scripts": {
     "start": "react-scripts start",
