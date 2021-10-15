@@ -24,7 +24,7 @@
     "jwt-decode": "^3.1.2",
     "mongoose": "^5.13.5",
     "morgan": "^1.10.0",
-    "passport": "^0.4.1",
+    "passport": "^0.5.0",
     "passport-jwt": "^4.0.0",
     "path": "^0.12.7",
     "validator": "^13.5.1"
