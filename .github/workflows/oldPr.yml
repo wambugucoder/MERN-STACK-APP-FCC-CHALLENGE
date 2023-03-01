@@ -1,0 +1,30 @@
+name: Merge old pull requests
+on:
+  schedule:
+    # Run every 5 seconds
+    - cron: '*/5 * * * * *'
+jobs:
+  merge_pull_requests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Merge pull requests
+        run: |
+          git fetch --all
+          git checkout main
+          git pull origin main
+          git branch -r --merged | grep -v '/main$' | sed 's/origin\///' | xargs -I {} git push origin :{}
+          git fetch origin '+refs/pull/*/head:refs/remotes/origin/pr/*'
+          for branch in $(git branch -r --merged | grep 'origin/pr'); do
+            pr_number=$(echo $branch | sed 's/[^0-9]*//g')
+            created=$(curl -s -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/owner/repo/pulls/$pr_number | jq -r '.created_at')
+            created_seconds=$(date -d $created +%s)
+            now_seconds=$(date +%s)
+            age_seconds=$((now_seconds - created_seconds))
+            if [ $age_seconds -gt 2592000 ]; then
+              git merge $branch --no-ff -m "Merge pull request #$pr_number"
+              git push origin main
+              git push origin :$branch
+            fi
+          done
