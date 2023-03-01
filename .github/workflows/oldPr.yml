@@ -12,9 +12,9 @@ jobs:
       - name: Merge pull requests
         run: |
           git fetch --all
-          git checkout main
-          git pull origin main
-          git branch -r --merged | grep -v '/main$' | sed 's/origin\///' | xargs -I {} git push origin :{}
+          git checkout master
+          git pull origin master
+          git branch -r --merged | grep -v '/master$' | sed 's/origin\///' | xargs -I {} git push origin :{}
           git fetch origin '+refs/pull/*/head:refs/remotes/origin/pr/*'
           for branch in $(git branch -r --merged | grep 'origin/pr'); do
             pr_number=$(echo $branch | sed 's/[^0-9]*//g')
@@ -24,7 +24,7 @@ jobs:
             age_seconds=$((now_seconds - created_seconds))
             if [ $age_seconds -gt 2592000 ]; then
               git merge $branch --no-ff -m "Merge pull request #$pr_number"
-              git push origin main
+              git push origin master
               git push origin :$branch
             fi
           done
