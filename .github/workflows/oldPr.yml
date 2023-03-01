@@ -2,7 +2,7 @@ name: Merge old pull requests
 on:
   schedule:
     # Run every 5 seconds
-    - cron: '1 * * * *'
+    - cron: '*/5 * * * *'
 jobs:
   merge_pull_requests:
     runs-on: ubuntu-latest
