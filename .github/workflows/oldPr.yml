@@ -9,6 +9,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Set up Git
+        uses: actions/setup-git@v2
+        with:
+          username: ${{ secrets.GITHUB_USERNAME }}
+          email: ${{ secrets.GITHUB_EMAIL }}
+          ssh-key: ${{ secrets.GITHUB_SSH_KEY }}
+          token: ${{ secrets.GITHUB_TOKEN }}
       - name: Merge pull requests
         run: |
           git fetch --all
