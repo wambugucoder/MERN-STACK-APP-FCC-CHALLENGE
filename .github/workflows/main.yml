@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Merge PR
         if: github.event.pull_request.merged == false && github.event.pull_request.head.repo.fork == false && github.event.pull_request.base.ref == 'main' && github.event.review.state == 'approved'
         run: git merge --ff-only ${{ github.event.pull_request.head.sha }}
