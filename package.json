@@ -15,7 +15,7 @@
   "author": "Jos Wambugu",
   "license": "ISC",
   "dependencies": {
-    "bcryptjs": "^2.4.3",
+    "bcryptjs": "^3.0.0",
     "concurrently": "^6.2.0",
     "express": "^4.17.1",
     "helmet": "^4.6.0",
